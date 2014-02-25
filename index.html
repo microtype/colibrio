@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>A Colibrio - Collaborative Tweet Chat</title>	
+	<title>Colibrio - Collaborative Tweet Chat</title>	
 	<link rel="stylesheet" type="text/css" href="http://visuel.tv/colibrio/style.css">
 </head>
 <body> 
@@ -24,9 +24,12 @@
 				<input size="35" id="message"></input> <!-- input field -->
 				<input type="submit"></input><!--submit button-->
 			</form>
+				
 		</div>
+		<div id="users heading">Connected Users:</div>
 		<div id="users"></div>
 		<div id="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="" data-size="large" data-count="none" data-dnt="true">Tweet</a></div>
+		<div id="currentuser">You are:</div>
 	</div>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	<!--<script src="/twitter.js"></script>-->
@@ -46,6 +49,7 @@
 			var $messageForm = $('#send-message'); //get the form with the id #send-message
 			var $messageBox = $('#message'); //get the message box with the id
 			var $chat = $('#chat'); //get the chat element, we are caching our variables
+			var $users = $('#users');
 			//we want to attach an event handler to the nickname form whenever a user submits it
 			$nickForm.submit(function(e){
 				e.preventDefault(); //prevents default behaviour
@@ -80,6 +84,7 @@
 			socket.on('new message', function(data){
 				$chat.append('<b>' + data.nick + ': </b>' + data.msg + "<br/>"); //display the message so we can see it use our chat variable and appending the data to it using jQuery. make the username bold add a colon and a space. 
 			});
+			
 		});
 	</script>
 </body>

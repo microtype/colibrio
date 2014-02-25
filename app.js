@@ -33,12 +33,12 @@ io.sockets.on('connection', function(socket){
 //receive messages on server side. LOOK AT THE NAME YOU USED TO SEND DATA ON THE CLIENT SIDE, 'send message' as a first parameter, we can do something with our data by using a function
 	socket.on('send message', function(data){
 		io.sockets.emit('new message', {msg: data, nick: socket.nickname}); 
-		//we want to send the message to all the users, name the event you are broadcasting to all users
+		//we want to send the message to all the users, name the event we are broadcasting to all users
 		//can also send the user name called nick, convenient to store the variable nick name in socket.nickname, stored in every single socket, when a single user sends a message we can just get that property from their own socket.
 	});
 	
 	socket.on('disconnect', function(data){ //when users disconnect
-		if(!socket.nickname) return; //if they didn't provide one, just exited
+		if(!socket.nickname) return; //if they didn't provide one, just exit
 		nicknames.splice(nicknames.indexOf(socket.nickname), 1); //remove the disconnecting user's nickname on the server
 		updateNicknames(); //update the clients
 	});
