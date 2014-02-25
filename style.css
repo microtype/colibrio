@@ -1,0 +1,15 @@
+	/*we give a height to the chat div, to be able to see it. put css in separate file, link to it */
+	/* hide the content wrap, we don't want the user to submit messages before submitting a user name */ 
+	/* float the chat wrap left */
+	/* adding a border to the chat wrap */
+		#chat{
+			height:500px; 
+		}
+		#contentWrap{
+		
+			display: none; 
+		}
+		#chatWrap{
+			float: left; 
+			border: 1px #000 solid; 
+		}
