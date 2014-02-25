@@ -1,0 +1,83 @@
+<html>
+<head>
+	<title>A Colibrio - Collaborative Tweet Chat</title>	
+	<link rel="stylesheet" type="text/css" href="http://visuel.tv/colibrio/style.css">
+</head>
+<body> 
+<!-- create a wrap for a nickname -->
+	<div id="nickWrap">
+	<!-- a message -->
+		<p>Enter a username:</p> 
+		<!-- want to make sure they submit a unique nickname, show an error message -->
+		<p id="nickError"></p>
+		<!-- a form basically like send message -->
+		<form id="setNick"> 
+			<input size="35" id="nickname"></input>
+			<input type="submit"></input>
+		</form>
+	</div>
+<!-- wrap it in another wrap to being able to float it -->
+	<div id="contentWrap"> 
+		<div id="chatWrap">
+			<div id="chat"></div> <!--for where the actual chat messages should go -->
+			<form id="send-message"> <!--for for users to submit chat messages -->
+				<input size="35" id="message"></input> <!-- input field -->
+				<input type="submit"></input><!--submit button-->
+			</form>
+		</div>
+		<div id="users"></div>
+	</div>
+	<!-- Add in some javascript, some jquery makes it easier, latest version url -->
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- we also need to include a file that socket.io generates for us -->
+	<script src="/socket.io/socket.io.js"></script>
+	<!-- the script so that the client can send messages to the server -->
+	<script>
+	//typical jQuery starting function, shorthand for document.ready, runs when all the elements of the document have finished loading
+		jQuery(function($){
+			var socket = io.connect(); //get ourselves socket functionality, that is given to us from the socket javascript we inserted
+			var $nickForm = $('#setNick'); //get some elements with jQuery, the nick name form
+			var $nickError = $('#nickError'); //get the error
+			var $nickBox = $('#nickname'); //get the nickname box itself
+			var $users = $('#users'); //get the div with the users
+			var $messageForm = $('#send-message'); //get the form with the id #send-message
+			var $messageBox = $('#message'); //get the message box with the id
+			var $chat = $('#chat'); //get the chat element, we are caching our variables
+			//we want to attach an event handler to the nickname form whenever a user submits it
+			$nickForm.submit(function(e){
+				e.preventDefault(); //prevents default behaviour
+				socket.emit('new user', $nickBox.val(), function(data){ //emit to new user, checking to see if the user name is valid or not, this is where the callback comes in -->
+					if(data){
+						$('#nickWrap').hide(); //hide the nickname form
+						$('#contentWrap').show(); //show the content wrap
+					} else{
+						$nickError.html('That username is already taken!  Try again.'); //if nickname already exists (sent false back from the server) want to display an error message
+					}
+				});
+				$nickBox.val(''); //clearing the nick name box
+			});
+			
+			socket.on('usernames', function(data){ //display list of usernames
+				var html = ''; //create an empty string
+				for(i=0; i < data.length; i++){ //loop through the array that we sent and add each nickname to the list, starting with the username til the last one
+					html += data[i] + '<br/>' //each time add user name and a line break
+				}
+				$users.html(html); //adding it to the users div
+			});
+			//we want to bind an event handler to the message form, every time the message form is submitted we want to send our message to the server
+			//takes a function with the event as a parameter
+			$messageForm.submit(function(e){
+			//prevent the default behaviour of the event, we don't want the form to submit and refresh the page just the message sent to server
+				e.preventDefault();
+				//send it to the server, sends an event to the server, name the event(first parameter), second param the actual data we are sending; jQuery function to just get the value of the message, use same name on server side.
+				socket.emit('send message', $messageBox.val());
+				$messageBox.val(''); //clear the messageBox value by sending an empty string
+			});
+			//we want to receive the message on the client side. use the same name as on the server side, use a function to get our data.
+			socket.on('new message', function(data){
+				$chat.append('<b>' + data.nick + ': </b>' + data.msg + "<br/>"); //display the message so we can see it use our chat variable and appending the data to it using jQuery. make the username bold add a colon and a space. 
+			});
+		});
+	</script>
+</body>
+</html>
