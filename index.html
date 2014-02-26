@@ -10,6 +10,7 @@
 </head>
 <body> 
 <!-- create a wrap for a nickname -->
+<h1>Colibrio - Collaborative Tweet Chat</h1>
 	<div id="nickWrap">
 	<!-- a message -->
 		<p>Enter a username:</p> 
@@ -19,7 +20,7 @@
 		<div class="column">
 		<form id="setNick"> 
 			<input size="35" id="nickname"></input>
-			<input type="submit"></input>
+			<input type="submit" value="Join Chat"></input>
 		</form>
 		</div>	
 	</div>
@@ -28,18 +29,17 @@
 		<div id="chatWrap">
 			<div id="chat"></div> <!--for where the actual chat messages should go -->
 			<form id="send-message"> <!--for for users to submit chat messages -->
-				<label for="message">Message: maxlength=50</label>
+				<label for="message">Enter your tweet here: (maxlength=140)</label>
 				<br>
-				<input size="50" id="message" maxlength="50" value="Enter your tweet here"/></input> <!-- input field -->
+				<input size="140" id="message" maxlength="140""/></input> <!-- input field  can also include message value="" and onFocus="this.value=''-->
 				<div class="maxlength"></div>
-				<input type="submit"></input><!--submit button-->
+				<input type="submit" value="Send"></input><!--submit button-->
 			</form>
 				
 		</div>
-		<div id="users heading">Connected Users:</div>
+		<div id="users heading"><b>Connected Users:</b></div>
 		<div id="users"></div>
 		<div id="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="" data-size="large" data-count="none" data-dnt="true">Tweet</a></div>
-		<div id="currentuser"></div>
 	</div>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	<!--<script src="/twitter.js"></script>-->
