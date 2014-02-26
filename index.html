@@ -1,7 +1,12 @@
 <html>
 <head>
-	<title>Colibrio - Collaborative Tweet Chat</title>	
-	<link rel="stylesheet" type="text/css" href="http://visuel.tv/colibrio/style.css">
+	<title>Colibrio - Collaborative Tweet Chat</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" href="http://visuel.tv/colibrio/main.css" type="text/css"/>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="http://visuel.tv/colibrio/jquery.maxlength.js"></script>
+		<script src="http://visuel.tv/colibrio/main.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://visuel.tv/colibrio/style.css"/>
 </head>
 <body> 
 <!-- create a wrap for a nickname -->
@@ -11,17 +16,22 @@
 		<!-- want to make sure they submit a unique nickname, show an error message -->
 		<p id="nickError"></p>
 		<!-- a form basically like send message -->
+		<div class="column">
 		<form id="setNick"> 
 			<input size="35" id="nickname"></input>
 			<input type="submit"></input>
 		</form>
+		</div>	
 	</div>
 <!-- wrap it in another wrap to being able to float it -->
 	<div id="contentWrap"> 
 		<div id="chatWrap">
 			<div id="chat"></div> <!--for where the actual chat messages should go -->
 			<form id="send-message"> <!--for for users to submit chat messages -->
-				<input size="35" id="message"></input> <!-- input field -->
+				<label for="message">Message: maxlength=50</label>
+				<br>
+				<input size="50" id="message" maxlength="50" value="Enter your tweet here"/></input> <!-- input field -->
+				<div class="maxlength"></div>
 				<input type="submit"></input><!--submit button-->
 			</form>
 				
@@ -29,12 +39,12 @@
 		<div id="users heading">Connected Users:</div>
 		<div id="users"></div>
 		<div id="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="" data-size="large" data-count="none" data-dnt="true">Tweet</a></div>
-		<div id="currentuser">You are:</div>
+		<div id="currentuser"></div>
 	</div>
 	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	<!--<script src="/twitter.js"></script>-->
 	<!-- Add in some javascript, some jquery makes it easier, latest version url -->
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
 	<!-- we also need to include a file that socket.io generates for us -->
 	<script src="/socket.io/socket.io.js"></script>
 	<!-- the script so that the client can send messages to the server -->
