@@ -1,10 +1,18 @@
+h1{
+	margin: 0px 0px 25px 0px;
+	font-family: Arial, sans-serif;
+	font-size: 21px;
+	line-height: 15px;
+	color: #333;
+}
 body{
-	margin: 50px 0 50px 50px;
+	margin: 25px 0 25px 25px;
 	font-family: Arial, sans-serif;
 	font-size: 13px;
 	line-height: 18px;
 	color: #333;
 	background-color: #fff;
+	 
 }
 
 .column {
@@ -19,7 +27,7 @@ label {
 
 input,
 textarea {
-	/*width: 600px;*/
+	width: 300px;
 	margin-bottom: 30px;
 }
 
@@ -32,14 +40,26 @@ textarea + .maxlength {
 	/* hide the content wrap, we don't want the user to submit messages before submitting a user name */ 
 	/* float the chat wrap left */
 	/* adding a border to the chat wrap */
-		#chat{
-			height:500px; 
-		}
-		#contentWrap{
-		
-			display: none; 
-		}
-		#chatWrap{
-			float: left; 
-			border: 1px #000 solid; 
-		}
+#chat{
+	margin: 10px 10px 10px 10px;
+	height: 300px; 
+	width: 300px;
+}
+
+#contentWrap{
+
+	display: none; 
+	width: 350px;
+}
+
+#chatWrap{
+	color: #333;
+	width: 300 px;
+	background:#CCCCCC;	
+}
+
+#send-message{
+margin: 10px 10px 10px 10px;
+	
+	
+}
