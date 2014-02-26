@@ -1,13 +1,14 @@
 <html>
 <head>
-	<title>Colibrio - Collaborative Tweet Chat</title>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<title>Colibrio - Collaborative Tweet Chat</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 		<link rel="stylesheet" href="http://visuel.tv/colibrio/main.css" type="text/css"/>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="http://visuel.tv/colibrio/jquery.maxlength.js"></script>
 		<script src="http://visuel.tv/colibrio/main.js"></script>
 		<!-- we also need to include a file that socket.io generates for us -->
 		<script src="/socket.io/socket.io.js"></script>
+		<script src="http://visuel.tv/colibrio/twitter.js"></script>
 </head>
 <body> 
 <!-- application heading -->
@@ -19,12 +20,12 @@
 		<!-- we want to make sure the users submit a unique nickname and show an error message if not unique -->
 		<p id="nickError"></p>
 		<!-- a form for the nickname -->
-		<div class="column">
+		
 		<form id="setNick"> 
 			<input size="35" id="nickname"></input>
 			<input type="submit" value="Join Chat"></input>
 		</form>
-		</div>	
+		
 	</div>
 <!-- we wrap the chat in another wrap to be able to float it -->
 	<div id="contentWrap"> 
@@ -32,19 +33,20 @@
 			<div id="chat"></div> <!-- where the actual chat messages will go -->
 			<form id="send-message"> <!-- for users to submit chat messages -->
 				<label for="message">Enter your tweet here:   </label>
-				<textarea size="140" id="message" maxlength="140"></textarea> <!-- textarea to write the tweet -->
-				<div class="maxlength"></div> <!-- container for the maxlength counter -->
+				<textarea id="message" maxlength="140"></textarea> <!-- textarea to write the tweet -->
+				 <!--  <div class="maxlength"></div> container for the maxlength counter -->
 				<input type="submit" value="Send"></input> <!--send button-->
 			</form>
 				
 		</div>
-		<div id="users heading"><b>Connected Users:</b></div> <!-- Heading for connected users list -->
+		<div id="usersheading"><b>Connected Users:</b> 
+		</div> <!-- Heading for connected users list -->
 		<div id="users"></div>
 		<!-- Twitter Button -->
 		<div id="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="" data-size="large" data-count="none" data-dnt="true">Tweet</a></div>
 	</div>
-	<!--<script src="/twitter.js"></script>-->
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+	
+	<!--<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>-->
 	
 	<!-- the jQuery script so that the client can send messages to the server -->
 	<script>
