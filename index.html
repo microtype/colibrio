@@ -6,16 +6,19 @@
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="http://visuel.tv/colibrio/jquery.maxlength.js"></script>
 		<script src="http://visuel.tv/colibrio/main.js"></script>
+		<!-- we also need to include a file that socket.io generates for us -->
+		<script src="/socket.io/socket.io.js"></script>
 </head>
 <body> 
-<!-- create a wrap for a nickname -->
+<!-- application heading -->
 <h1>Colibrio - Collaborative Tweet Chat</h1>
+<!-- create a wrap for a nickname -->
 	<div id="nickWrap">
 	<!-- a message -->
 		<p>Enter a username:</p> 
-		<!-- want to make sure they submit a unique nickname, show an error message -->
+		<!-- we want to make sure the users submit a unique nickname and show an error message if not unique -->
 		<p id="nickError"></p>
-		<!-- a form basically like send message -->
+		<!-- a form for the nickname -->
 		<div class="column">
 		<form id="setNick"> 
 			<input size="35" id="nickname"></input>
@@ -23,29 +26,27 @@
 		</form>
 		</div>	
 	</div>
-<!-- wrap it in another wrap to being able to float it -->
+<!-- we wrap the chat in another wrap to be able to float it -->
 	<div id="contentWrap"> 
 		<div id="chatWrap">
-			<div id="chat"></div> <!--for where the actual chat messages should go -->
-			<form id="send-message"> <!--for for users to submit chat messages -->
+			<div id="chat"></div> <!-- where the actual chat messages will go -->
+			<form id="send-message"> <!-- for users to submit chat messages -->
 				<label for="message">Enter your tweet here:   </label>
-				<textarea size="140" id="message" maxlength="140""></textarea> <!-- input field  can also include message value="" and onFocus="this.value=''-->
-				<div class="maxlength"></div>
-				<input type="submit" value="Send"></input><!--submit button-->
+				<textarea size="140" id="message" maxlength="140"></textarea> <!-- textarea to write the tweet -->
+				<div class="maxlength"></div> <!-- container for the maxlength counter -->
+				<input type="submit" value="Send"></input> <!--send button-->
 			</form>
 				
 		</div>
-		<div id="users heading"><b>Connected Users:</b></div>
+		<div id="users heading"><b>Connected Users:</b></div> <!-- Heading for connected users list -->
 		<div id="users"></div>
+		<!-- Twitter Button -->
 		<div id="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-url="" data-text="" data-size="large" data-count="none" data-dnt="true">Tweet</a></div>
 	</div>
-	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	<!--<script src="/twitter.js"></script>-->
-	<!-- Add in some javascript, some jquery makes it easier, latest version url -->
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 	
-	<!-- we also need to include a file that socket.io generates for us -->
-	<script src="/socket.io/socket.io.js"></script>
-	<!-- the script so that the client can send messages to the server -->
+	<!-- the jQuery script so that the client can send messages to the server -->
 	<script>
 	//typical jQuery starting function, shorthand for document.ready, runs when all the elements of the document have finished loading
 		jQuery(function($){

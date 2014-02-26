@@ -36,10 +36,9 @@ textarea + .maxlength {
 	position: relative;
 	top: -30px;
 }
-	/*we give a height to the chat div, to be able to see it. put css in separate file, link to it */
-	/* hide the content wrap, we don't want the user to submit messages before submitting a user name */ 
-	/* float the chat wrap left */
-	/* adding a border to the chat wrap */
+	/* we give a height to the chat div, to be able to see it. */
+	/* we hide the content wrap before submitting a user name, we don't want the user to submit messages before submitting a user name */ 
+	/* we float the chat wrap left */
 #chat{
 	margin: 10px 10px 10px 10px;
 	height: 300px; 
