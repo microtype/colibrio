@@ -1,7 +1,28 @@
 colibrio
 ========
+
 //STUDENT PROJECT
+
 Colibrio is a simple chat where you can send the last message as tweet
+
+---INSTRUCTIONS - How to Run Colibrio on Windows---
+> Download the folder
+COMMAND PROMPT
+> Start your Command Prompt by typing cmd followed by enter in the windows search bar
+> Navigate* to the location of the folder on your harddrive 
+> Type "npm install" and wait for the install to finish
+> Type "node app.js" and wait for the message
+> Let the command prompt window be open
+
+WEB BROWSER
+> Start a new web browser window
+> navigate to "localhost:3000"
+> collaborate on a tweet by chatting
+> to tweet the message that you agreed on copy paste it into the pop-up tweet window.
+
+*=(using cd or cd.. commands to move in your file strucuture, type HELP in the command prompt followed by enter for more help)
+
+
 
 This Student Project builds upon:
 
