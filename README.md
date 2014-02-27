@@ -5,7 +5,7 @@ colibrio
 
 Colibrio is a simple chat where you can send the last message as tweet
 
----INSTRUCTIONS - How to Run Colibrio on Windows---
+---INSTRUCTIONS - How to Run Colibrio (only tested on Windows)---
 > Download the folder
 COMMAND PROMPT
 > Start your Command Prompt by typing cmd followed by enter in the windows search bar
